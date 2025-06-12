@@ -1,40 +1,32 @@
-//
-//  ContentView.swift
-//  learnARKit
-//
-//  Created by Tony on 2025/6/12.
-//
+import SwiftUI // 引入 SwiftUI 框架，用于构建界面
+import RealityKit // 引入 RealityKit 框架，用于构建 AR 内容
+import ARKit // 引入 ARKit 框架，用于访问 AR 功能
 
-import SwiftUI
-import RealityKit
+struct ContentView: View { // 定义 ContentView 结构体，遵循 View 协议
+    var body: some View { // 定义视图的主体内容
+        NavigationView {
+            List {
+                ZStack(alignment: .leading) {
+                    NavigationLink(destination: RulerView()) {
 
-struct ContentView : View {
-
-    var body: some View {
-        RealityView { content in
-
-            // Create a cube model
-            let model = Entity()
-            let mesh = MeshResource.generateBox(size: 0.1, cornerRadius: 0.005)
-            let material = SimpleMaterial(color: .gray, roughness: 0.15, isMetallic: true)
-            model.components.set(ModelComponent(mesh: mesh, materials: [material]))
-            model.position = [0, 0.05, 0]
-
-            // Create horizontal plane anchor for the content
-            let anchor = AnchorEntity(.plane(.horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.2, 0.2)))
-            anchor.addChild(model)
-
-            // Add the horizontal plane anchor to the scene
-            content.add(anchor)
-
-            content.camera = .spatialTracking
-
+                    }.opacity(0)
+                    HStack {
+                        Text("AR尺子")
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .padding(.vertical, 8)
+                }
+            }
+            .navigationTitle("功能列表")
         }
-        .edgesIgnoringSafeArea(.all)
     }
-
 }
 
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
