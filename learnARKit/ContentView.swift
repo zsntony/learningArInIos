@@ -9,9 +9,35 @@ struct ContentView: View { // 定义 ContentView 结构体，遵循 View 协议
                 ZStack(alignment: .leading) {
                     NavigationLink(destination: RulerView()) {
 
-                    }.opacity(0)
+                    }.padding().opacity(0)
                     HStack {
                         Text("AR尺子")
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .padding(.vertical, 8)
+                }
+                ZStack(alignment: .leading) {
+                    NavigationLink(destination: BoxView()) {
+
+                    }.opacity(0)
+                    HStack {
+                        Text("AR的Box")
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .padding(.vertical, 8)
+                }
+                ZStack(alignment: .leading) {
+                    NavigationLink(destination: ToyPlaneView()) {
+
+                    }.opacity(0)
+                    HStack {
+                        Text("AR的飞机模型")
                         Spacer()
                         Image(systemName: "chevron.right")
                             .foregroundColor(.gray)
